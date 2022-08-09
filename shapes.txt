@@ -1,0 +1,64 @@
+# Create a script that generates a shape made of ASCII characters
+#!/bin/bash
+if [[ $1 == "circle" || $1 == "oval" || $1 == "rectangle" ]]
+then
+printf "shape must be a square, triangle, or line"
+printf "\n"
+else 
+case $1 in 
+	square)
+       if [[ $2 -lt 2 ]]
+        then 
+        printf "must have two arguments"
+        printf "\n"
+       else 	
+        for (( i=0; i<$2; i++ )); do 
+	  for (( j=0; j<$2; j++ )); do 
+		 if [[ -z $3 ]]
+	          then		 
+		  printf "*"
+	          else
+	          printf "$3"
+                  fi		  
+          done
+          printf "\n"
+        done
+       fi	
+	;;
+	line)
+	      if [[ $2 -lt 2 ]]
+        then
+        printf "must have two arguments"        
+        printf "\n"     
+       else	
+		for (( i=0; i<$2; i++ )); do
+		      if [[ -z $3 ]]
+                  then
+                  printf "*"
+                  else
+                  printf "$3"             
+                  fi
+ 	       done
+              printf "\n"
+           fi	      
+	;;
+	triangle)
+         if [[ $2 -lt 2 ]]
+          then 
+          printf "must have 2 argumants"
+         else 	  
+           for (( i=1; i<=$2; i++ )); do
+             for (( j=1; j<=i; j++ )); do
+		    if [[ -z $3 ]]
+		     then 
+	             printf "*"
+	            else 
+	             printf "$3"
+                   fi
+                 done
+                 printf "\n"
+               done
+             fi	       
+	;;	
+ esac
+fi
